@@ -1,2 +1,4 @@
 # Cracking the Coding Interview
-## Examples
+## Exercises
+
+Let's keep on learning.
