@@ -6,23 +6,23 @@ Has spent a total of more than $5,000 in the last 6 months
 Has no missed payments in the last 12 months
  */
 
-type TransactionType = "RECEIVED" | "SPENT"
+type TransactionType = "RECEIVED" | "SPENT";
 
 interface Transaction {
-    transactionId: string,
-    createdAt: Date,
-    amount: number,
-    type: TransactionType
+  transactionId: string;
+  createdAt: Date;
+  amount: number;
+  type: TransactionType;
 }
 
 interface MissedPaymentReport {
-    missedPaymentId: string,
-    createdAt: Date
+  missedPaymentId: string;
+  createdAt: Date;
 }
 
 interface User {
-    user_id: string,
-    name: string,
-    transactions: Transaction[],
-    missedPayments: MissedPaymentReport[]
+  user_id: string;
+  name: string;
+  transactions: Transaction[];
+  missedPayments: MissedPaymentReport[];
 }
