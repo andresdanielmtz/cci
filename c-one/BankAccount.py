@@ -4,8 +4,6 @@ import random
  Design a simple bank account class with deposit, transfer, and withdraw functionality using object-oriented programming. Interviewer was more interested in how I talked through my solution, and how I took care of edge cases - even though interviewer did not want me to implement functionality to take care of the edge cases.
 '''
 
-# Object in dp
-transfers = []
 
 class BankAccount:
     def __init__(self):
@@ -24,18 +22,16 @@ class BankAccount:
         else:
             self.amount -= amountToWithdraw
             
-    def transfer(self, recipientID: str, amount: float):
-        transfers.append({
-            "transactionID": random.randint(1000, 100000000), # Imitating a random id. Ideally we should use a GUID or a unique ID
-            "ownerId": self.id,
-            "recipientID": recipientID,
-            "amount": amount
-        })
+    def transfer(self, recipientAccount: "BankAccount", amount: float):
+        recipientAccount.deposit(amount)
         self.amount -= amount
 
 acc = BankAccount()
+
+acc2 = BankAccount()
 acc.deposit(100)
-acc.transfer("6542342", 50)
+acc.transfer(acc2, 50)
 amountAfterTransfer = acc.getAmount()
-print(transfers)
+acc2AfterTransfer = acc2.getAmount()
 print(amountAfterTransfer)
+print(acc2AfterTransfer)
