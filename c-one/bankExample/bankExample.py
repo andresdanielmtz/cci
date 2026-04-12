@@ -1,6 +1,6 @@
 import uuid
 from enum import Enum
-import datetime
+from datetime import datetime
 
 class TransactionType(Enum):
     TRANSFERENCE = 1
@@ -16,7 +16,10 @@ class Transaction:
         self.amount = amount
         self.timestamp = datetime.now()
         self.target_account_id = target_account_id
-
+    def __str__(self):
+        return f"( {self.type}, {self.amount}, {self.timestamp}, {self.target_account_id} )"
+    def __repr__(self):
+        return self.__str__()
 class Account:
     def __init__(self, name: str, account_id: str):
         self.account_id = account_id
@@ -43,7 +46,9 @@ class Account:
     def get_balance(self):
         return self._balance
 
-    def get_transactions(self):
+    def get_transactions(self, orderedByDate = True):
+        if (orderedByDate):
+            return sorted(self._transaction_history, key = lambda transaction: transaction.timestamp)
         return self._transaction_history
 
 
@@ -106,3 +111,5 @@ if andres_acc and sofia_acc:
 
     print(andres_acc.get_balance())  # should be 50
     print(sofia_acc.get_balance())   # should be 50
+sofiaTransactions = sofia_acc.get_transactions(True)
+print([transaction for transaction in sofiaTransactions])
